@@ -1,0 +1,9 @@
+1.项目需求：意见反馈
+
+具体调用流程：api层调用service, 从前台封装数据,调用service层，将封装的数据给service层，返回类给前端
+
+              service层调用business 打印入参和出去的方法，校验用户输入的内容和手机号码是否为空，手机号码是否合法，将封装的数据传入business层
+
+             ,business层调用contract层,打印入参合出去的方法，将前台传入的数据模型转行成dto,调用contract层add方法，返回ResponseResult对象
+
+              contract层调用service,service调用business层,business层调用数据库代码进行交互
