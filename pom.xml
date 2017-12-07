@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mobanker.framework</groupId>
+		<artifactId>mobanker-framework</artifactId>
+		<version>2.1.8-SNAPSHOT</version>
+	</parent>
+	<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+	<artifactId>sjd-zhidaiguanjia-api-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>sjd-zhidaiguanjia-api-parent</name>
+
+	<properties>
+		<!--<project.api.version>1.0.0-SNAPSHOT</project.api.version>-->
+		<project.encoding>UTF-8</project.encoding>
+		<jdk.version>1.8</jdk.version>
+		<spring.amqp.version>1.6.0.RELEASE</spring.amqp.version>
+		<lombok.version>1.16.4</lombok.version>
+		<log4j-2.version>2.0</log4j-2.version>
+	</properties>
+
+	<modules>
+		<module>sjd-zhidaiguanjia-api-api</module>
+		<module>sjd-zhidaiguanjia-api-service</module>
+		<module>sjd-zhidaiguanjia-api-common</module>
+		<module>sjd-zhidaiguanjia-api-application</module>
+		<module>sjd-zhidaiguanjia-api-model</module>
+		<module>sjd-zhidaiguanjia-api-business</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+				<artifactId>sjd-zhidaiguanjia-api-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+				<artifactId>sjd-zhidaiguanjia-api-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+				<artifactId>sjd-zhidaiguanjia-api-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+				<artifactId>sjd-zhidaiguanjia-api-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mobanker.zhidaiguanjia.api</groupId>
+				<artifactId>sjd-zhidaiguanjia-api-business</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j-2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j-2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mobanker.framework</groupId>
+			<artifactId>mobanker-fx-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-core-asl</artifactId>
+					<groupId>org.codehaus.jackson</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.mobanker.framework</groupId>
+			<artifactId>mobanker-fx-netty</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-core-asl</artifactId>
+					<groupId>org.codehaus.jackson</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mobanker.framework</groupId>
+			<artifactId>mobanker-fx-ee</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.mobanker.framework</groupId>
+					<artifactId>mobanker-fx-rabbitmq</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.mobanker.framework</groupId>
+			<artifactId>mobanker-fx-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mobanker.framework</groupId>
+			<artifactId>mobanker-fx-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mobanker.message</groupId>
+			<artifactId>mobanker-message-contract</artifactId>
+			<version>1.0.6-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mobanker.message</groupId>
+			<artifactId>mobanker-message-model</artifactId>
+			<version>1.0.6-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!-- resource插件, 设定编码 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<configuration>
+						<includeEmptyDirs>true</includeEmptyDirs>
+						<encoding>${project.encoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- jar相关插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- clean插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+				</plugin>
+
+				<!-- install插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+				</plugin>
+
+				<!-- deploy插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+				</plugin>
+
+				<!-- dependency插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
